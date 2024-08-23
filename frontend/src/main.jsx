@@ -5,10 +5,13 @@ import "./index.css";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-import Login from "./pages/login.jsx";
+import Login from "./pages/Login.jsx";
 import Cadastro from "./pages/Cadastro.jsx";
 import NovaTarefa from "./pages/NovaTarefa.jsx";
 import Principal from "./pages/Principal.jsx";
+
+import { Provider } from "react-redux";
+import store from "./redux/store";
 
 const router = createBrowserRouter([
   {
@@ -35,6 +38,8 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <Provider store={store}>
+      <RouterProvider router={router} />
+    </Provider>
   </StrictMode>
 );

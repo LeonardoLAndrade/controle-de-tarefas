@@ -1,17 +1,16 @@
-const Usuarios = require("../models/usuarios.js");
+const Tarefas = require("../models/tarefas.js");
 const status = require("http-status");
 
 exports.Insert = (req, res, next) => {
-  const { nome, direito, senha } = req.body;
+  const { nome, tipo } = req.body;
 
-  Usuarios.create({
+  Tarefas.create({
     nome: nome,
-    direito: direito,
-    senha: senha,
+    tipo: tipo,
   })
-    .then((usuario) => {
-      if (usuario) {
-        res.status(status.OK).send(usuario);
+    .then((tarefa) => {
+      if (tarefa) {
+        res.status(status.OK).send(tarefa);
       } else {
         res.status(status.NOT_FOUND).send();
       }
@@ -20,10 +19,10 @@ exports.Insert = (req, res, next) => {
 };
 
 exports.SearchAll = (req, res, next) => {
-  Usuarios.findAll()
-    .then((usuarios) => {
-      if (usuarios) {
-        res.status(status.OK).send(usuarios);
+  Tarefas.findAll()
+    .then((tarefas) => {
+      if (tarefas) {
+        res.status(status.OK).send(tarefas);
       } else {
         res.status(status.NOT_FOUND).send();
       }
@@ -34,10 +33,10 @@ exports.SearchAll = (req, res, next) => {
 exports.SearchOne = (req, res, next) => {
   const codigo = req.params.id;
 
-  Usuarios.findByPk(codigo)
-    .then((usuario) => {
-      if (usuario) {
-        res.status(status.OK).send(usuario);
+  Tarefas.findByPk(codigo)
+    .then((tarefa) => {
+      if (tarefa) {
+        res.status(status.OK).send(tarefa);
       } else {
         res.status(status.NOT_FOUND).send();
       }
@@ -45,8 +44,8 @@ exports.SearchOne = (req, res, next) => {
     .catch((error) => next(error));
 };
 
-exports.GetNextUserId = (req, res, next) => {
-  Usuarios.max("codigo")
+exports.GetNextTaskId = (req, res, next) => {
+  Tarefas.max("codigo")
     .then((maxId) => {
       console.log("Max ID:", maxId); // Adicione este log
       const nextId = maxId ? maxId + 1 : 1; // Se maxId for nulo, começa do 1

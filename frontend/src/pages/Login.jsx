@@ -4,6 +4,8 @@ import Label from "../components/Label";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { useDispatch } from "react-redux";
+import { DefineUserLogado } from "../redux/usuarioLogadoSlice";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -11,6 +13,7 @@ const Login = () => {
     codigo: "",
     senha: "",
   });
+  const dispatch = useDispatch();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -31,6 +34,13 @@ const Login = () => {
         })
         .then((data) => {
           if (usuario.senha === data.senha) {
+            dispatch(
+              DefineUserLogado({
+                codigo: data.codigo,
+                nome: data.nome,
+                direito: data.direito,
+              })
+            );
             toast.success("Usuário logado com sucesso!");
             setTimeout(() => navigate("/principal"), 1500);
           } else {

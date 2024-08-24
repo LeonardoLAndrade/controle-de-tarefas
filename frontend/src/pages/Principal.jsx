@@ -13,6 +13,10 @@ const Principal = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
+  const { usuarioLogado } = useSelector(
+    (rootReducer) => rootReducer.usuarioLogadoReducer
+  );
+
   const usuarioSelecionadoInicial = {
     codigo: "",
     nome: "",
@@ -119,6 +123,15 @@ const Principal = () => {
         .catch((error) => toast.error("Erro ao atualizar tarefas."));
     }
   }, []);
+
+  const handleAddUser = (e) => {
+    e.preventDefault();
+    if (usuarioLogado.direito === "S") {
+      navigate("/cadastro");
+    } else {
+      toast.error("Usuário não possui permissão.");
+    }
+  };
 
   const handleAddTask = (e) => {
     e.preventDefault();
@@ -235,14 +248,26 @@ const Principal = () => {
               </div>
             )}
           </div>
-          <form className="row g-2 form" onSubmit={handleAddTask}>
-            <div></div>
-            <div className="buscar pt-1 text-end">
-              <button to="submit" className="btn btn-primary">
-                Adicionar Tarefa
-              </button>
-            </div>
-          </form>
+          {usuarioLogado.direito === "S" && (
+            <>
+              <form className="row g-2 form" onSubmit={handleAddTask}>
+                <div></div>
+                <div className="buscar pt-1 text-end">
+                  <button to="submit" className="btn btn-primary">
+                    Adicionar Tarefa
+                  </button>
+                </div>
+              </form>
+              <form className="row g-2 form" onSubmit={handleAddUser}>
+                <div></div>
+                <div className="buscar pt-1 text-end">
+                  <button to="submit" className="btn btn-primary">
+                    Cadastrar Usuário
+                  </button>
+                </div>
+              </form>
+            </>
+          )}
         </div>
       </div>
     </>

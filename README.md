@@ -36,6 +36,8 @@ npm run dev
 
 Por padrão, a porta e url utilizado é http://localhost:5173, abra no seu navegador. Caso a porta 5173 já esteja sendo utilizada, a aplicação irá providenciar e informar em qual porta se hospedou.
 
+Para cadastrar um primeiro usuário, acesse http://localhost:5173/cadastro para poder acessar o login do sistema, após o cadastro, retorne através da url para http://localhost:5173 ou clique na seta no canto superior esquerdo.
+
 ## Autores
 
 - [Leonardo Lima Andrade](https://github.com/LeonardoLAndrade) - Desenvolvedor principal.

@@ -3,7 +3,7 @@ import "./Login.css";
 import Label from "../components/Label";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import { useDispatch } from "react-redux";
 import { DefineUserLogado } from "../redux/usuarioLogadoSlice";
 
@@ -53,44 +53,59 @@ const Login = () => {
     }
   };
   return (
-    <div className="mid">
-      <h1 className="text-center">Controle de Tarefas</h1>
-      <div className="box">
-        <form
-          className="row g-2 form"
-          action="/principal"
-          onSubmit={handleSubmit}
-        >
-          <div className="col-md-3">
-            <Label htmlFor="codUsuario" text="Usuário" />
-            <Input
-              type="number"
-              id="codUsuario"
-              name="codigo"
-              placeholder="Cod."
-              value={usuario.codigo}
-              onChange={handleChange}
-            />
-          </div>
-          <div className="col-md-6">
-            <Label htmlFor="senha" text="Senha" />
-            <Input
-              type="password"
-              id="senha"
-              name="senha"
-              placeholder="Insira a senha"
-              value={usuario.senha}
-              onChange={handleChange}
-            />
-          </div>
-          <div className="col-9">
-            <button type="submit" className="btn btn-primary">
-              Entrar
-            </button>
-          </div>
-        </form>
+    <>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable={false}
+        pauseOnHover
+        theme="light"
+        transition:Bounce
+      />
+      <div className="mid">
+        <h1 className="text-center">Controle de Tarefas</h1>
+        <div className="box">
+          <form
+            className="row g-2 form"
+            action="/principal"
+            onSubmit={handleSubmit}
+          >
+            <div className="col-md-3">
+              <Label htmlFor="codUsuario" text="Usuário" />
+              <Input
+                type="number"
+                id="codUsuario"
+                name="codigo"
+                placeholder="Cod."
+                value={usuario.codigo}
+                onChange={handleChange}
+              />
+            </div>
+            <div className="col-md-6">
+              <Label htmlFor="senha" text="Senha" />
+              <Input
+                type="password"
+                id="senha"
+                name="senha"
+                placeholder="Insira a senha"
+                value={usuario.senha}
+                onChange={handleChange}
+              />
+            </div>
+            <div className="col-9">
+              <button type="submit" className="btn btn-primary">
+                Entrar
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

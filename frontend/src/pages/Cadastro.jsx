@@ -3,6 +3,7 @@ import "./Cadastro.css";
 import Label from "../components/Label";
 import { useEffect, useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const Cadastro = () => {
   const [nextUserId, setNextUserId] = useState(null);
@@ -11,6 +12,7 @@ const Cadastro = () => {
     direito: "",
     senha: "",
   });
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetch("http://localhost:3003/sistema/usuarios/nextId")
@@ -84,6 +86,21 @@ const Cadastro = () => {
       <div className="mid">
         <h1 className="text-center">Cadastro de Usuários</h1>
         <div className="box">
+          <form className="mb-3" onSubmit={() => navigate("/principal")}>
+            <div className="col-2">
+              <button
+                type="submit"
+                className="btn btn-primary"
+                style={{
+                  padding: "0rem 0.7rem ",
+                  backgroundColor: "#0d6efd80",
+                  borderColor: "#0d6efd80",
+                }}
+              >
+                <span style={{ fontSize: "1.6rem" }}>&crarr;</span>
+              </button>
+            </div>
+          </form>
           <form className="row g-2 form" onSubmit={handleSubmit}>
             <div className="col-md-3">
               <Label htmlFor="codUsuario" text="Cod. Usuário" />
@@ -132,11 +149,11 @@ const Cadastro = () => {
             </div>
             <div className="col-md-6"></div>
             <div className="col-9">
-              <button type="submit" className="btn btn-primary">
+              <button type="submit" className="btn btn-primary mt-2">
                 Cadastrar
               </button>
             </div>
-            <div className="col-md-3"></div>
+            <div className="col-3"></div>
           </form>
         </div>
       </div>

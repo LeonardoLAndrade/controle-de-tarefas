@@ -248,7 +248,7 @@ const Principal = () => {
               </div>
             )}
           </div>
-          {usuarioLogado.direito === "S" && (
+          {usuarioLogado?.direito === "S" && (
             <>
               <form className="row g-2 form" onSubmit={handleAddTask}>
                 <div></div>

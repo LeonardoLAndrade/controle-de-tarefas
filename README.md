@@ -38,6 +38,8 @@ Por padrão, a porta e url utilizado é http://localhost:5173, abra no seu naveg
 
 Para cadastrar um primeiro usuário, acesse http://localhost:5173/cadastro para poder acessar o login do sistema, após o cadastro, retorne através da url para http://localhost:5173 ou clique na seta no canto superior esquerdo.
 
+- Recomendação: Criar um usuário Supervisor inicialmente, pois apenas ele possui acesso às funcionalidades de cadastro de tarefas e usuários.
+
 ## Autores
 
 - [Leonardo Lima Andrade](https://github.com/LeonardoLAndrade) - Desenvolvedor principal.
